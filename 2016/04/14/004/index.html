@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Linux学习记录 · LastMagician</title><meta name="description" content="Linux学习记录 - LastMagician"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="LastMagician"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="https://avatars1.githubusercontent.com/u/10293565?v=3&amp;s=320" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/LastMagician" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Linux学习记录</h1><div class="post-info">Apr 14, 2016</div><div class="post-content"><h4 id="显示系统上一次开机时间"><a href="#显示系统上一次开机时间" class="headerlink" title="显示系统上一次开机时间"></a>显示系统上一次开机时间</h4><p>1.使用 who 命令，who -b 或 who -r<br><a id="more"></a><br>    [root@admin ~]# who -b<br>    system boot Apr 14 10:38<br>    [root@admin ~]# who -r<br>    run-level 3  Apr 14 10:38 </p>
+<p>2.使用 last 命令，last reboot | head -1</p>
+<pre><code>[root@admin ~]# last reboot | head -1 
+reboot   system boot  2.6.32-042stab11   Thu Apr 14 10:38 - 11:17  (00:38)
+</code></pre><h4 id="显示系统上一次关机时间"><a href="#显示系统上一次关机时间" class="headerlink" title="显示系统上一次关机时间"></a>显示系统上一次关机时间</h4><p>使用last命令，last -x | grep shutdown | head -1</p>
+<pre><code>[root@admin ~]# last -x | grep shutdown | head -1
+shutdown system down  2.6.32-042stab11  Thu Apr 14 10:38 - 10:38  (00:00)
+</code></pre><h4 id="who-命令的使用"><a href="#who-命令的使用" class="headerlink" title="who 命令的使用"></a>who 命令的使用</h4><p>1.查看系统已登陆用户</p>
+<pre><code>[root@admin ~]# who -u
+root     pts/0        Apr 14 11:31   .         950
+</code></pre><p>2.查看登陆登陆级别</p>
+<pre><code>[root@admin ~]# who -r
+run-level 3  Apr 14 10:38 
+</code></pre><p>3.查看已登陆的所有用户的用户名和用户数</p>
+<pre><code>[root@admin ~]# who -q
+root
+# users=1 
+</code></pre></div></article></div></main><footer><div class="paginator"><a href="/2016/04/21/005/" class="prev">PREV</a><a href="/2016/04/12/003/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 <a href="http://yoursite.com">LastMagician</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-75748515-1",'auto');ga('send','pageview');</script></body></html>

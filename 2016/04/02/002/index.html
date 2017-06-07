@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 关于Shadowsocks的一些技巧 · LastMagician</title><meta name="description" content="关于Shadowsocks的一些技巧 - LastMagician"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="LastMagician"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="https://avatars1.githubusercontent.com/u/10293565?v=3&amp;s=320" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/LastMagician" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">关于Shadowsocks的一些技巧</h1><div class="post-info">Apr 2, 2016</div><div class="post-content"><p>众所周知，我们使用Shadowsocks是为了绕过 GFW 的封锁，去上一些我们想上却又上不了网站，<br><a id="more"></a></p>
+<h4 id="解决一些网站无法访问的问题"><a href="#解决一些网站无法访问的问题" class="headerlink" title="解决一些网站无法访问的问题"></a>解决一些网站无法访问的问题</h4><p>有童鞋会发现，使用 Shadowsocks 之后虽然大部分被墙的网站我们都可以上，比如<a href="www.google.com">google</a>、 <a href="www.facevbook.com">facebook</a>等等一些网站，但还是有一些网站上不了，比如 <a href="developer.android.com/">Android Developers</a> 的网站，如果我们是自己搭建的 ss 服务，我们首先会测试一下网站能不能ping通，当然一般是可以通的。其实这里就涉及到本地Shadowsocks的系统代理模式的问题，它一般有两种模式，一种是PAC模式，一种是全局模式。这里有两种解决方法，如下：</p>
+<ul>
+<li>第一种方法，改用全局模式，启用之后你会发现原先无法打开的网站能打开了(如：<a href="developer.android.com/">Android Developers</a>)。</li>
+<li>第二种方法，编辑PAC文件，<ul>
+<li>右击小飞机的图标，选择编辑本地PAC文件，一般是pac.txt的文件；  </li>
+<li>打开后会发现有类似下面的代码：</li>
+</ul>
+</li>
+</ul>
+<pre><code>var domains = {
+  &quot;gimpshop.com&quot;: 1, 
+  &quot;directcreative.com&quot;: 1, 
+</code></pre><p>这时我们只要按照相应的格式将无法访问的网站链接添加进去就好了，比如 Android Developers 的网站 developer.android.com，保存之后重新打开你会发现可以访问了！</p>
+<pre><code>var domains = {
+  &quot;developer.android.com&quot;: 1, 
+  &quot;gimpshop.com&quot;: 1, 
+  &quot;directcreative.com&quot;: 1,
+</code></pre></div></article></div></main><footer><div class="paginator"><a href="/2016/04/12/003/" class="prev">PREV</a><a href="/2016/03/19/001/" class="next">NEXT</a></div><div class="copyright"><p>© 2017 <a href="http://yoursite.com">LastMagician</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-75748515-1",'auto');ga('send','pageview');</script></body></html>

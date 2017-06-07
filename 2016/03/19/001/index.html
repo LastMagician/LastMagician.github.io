@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 记录用hexo搭建Blog过程中遇到的问题 · LastMagician</title><meta name="description" content="记录用hexo搭建Blog过程中遇到的问题 - LastMagician"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="LastMagician"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="https://avatars1.githubusercontent.com/u/10293565?v=3&amp;s=320" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/LastMagician" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">记录用hexo搭建Blog过程中遇到的问题</h1><div class="post-info">Mar 19, 2016</div><div class="post-content"><h2 id="1、关于生成并推送到github"><a href="#1、关于生成并推送到github" class="headerlink" title="1、关于生成并推送到github"></a>1、关于生成并推送到github</h2><h4 id="第一步：-配置根目录的-config-yml文件。"><a href="#第一步：-配置根目录的-config-yml文件。" class="headerlink" title="第一步： 配置根目录的_config.yml文件。"></a>第一步： 配置根目录的_config.yml文件。</h4><pre><code>deploy: 
+    type: git
+    repository: https://github.com/LastMagician/LastMagician.github.io.git repository—name 
+    branch: master 
+</code></pre><p><em>注：从hexo 3.0开始，type要改成git才能正常deploy</em><br><a id="more"></a></p>
+<h4 id="第二步：-生成静态文件并推送到github，命令如下："><a href="#第二步：-生成静态文件并推送到github，命令如下：" class="headerlink" title="第二步： 生成静态文件并推送到github，命令如下："></a>第二步： 生成静态文件并推送到github，命令如下：</h4><pre><code>$ hexo g  # 生成静态文件
+$ hexo d  # 部署网站
+或
+$ hexo g --d  # 完成后部署
+</code></pre><p><em>注：完成第一步的配置之后，第二步部署网站的时候会提示输入github的用户名和密码</em>  </p>
+<ul>
+<li>若执行成功，会自动将生成的静态文件同步到github</li>
+<li>报报错： error：deoloyer not found github，执行如下命令：</li>
+</ul>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre><ul>
+<li>上一步成功之后，再次执行：</li>
+</ul>
+<pre><code>hexo d 
+</code></pre><h2 id="2、进入主页文章列表直接显示全部，而不是显示一部分摘要或者more"><a href="#2、进入主页文章列表直接显示全部，而不是显示一部分摘要或者more" class="headerlink" title="2、进入主页文章列表直接显示全部，而不是显示一部分摘要或者more"></a>2、进入主页文章列表直接显示全部，而不是显示一部分摘要或者more</h2><p>解决办法：在文章中加一句 <code>&lt;!--more--&gt;</code>，在这个标记之前的就是摘要。<br>效果：<a href="http://lastmagician.github.io/" target="_blank" rel="external">http://lastmagician.github.io/</a></p>
+<h2 id="3、push到github时重复输入用户名和密码"><a href="#3、push到github时重复输入用户名和密码" class="headerlink" title="3、push到github时重复输入用户名和密码"></a>3、push到github时重复输入用户名和密码</h2><p>问题原因及解决方案：</p>
+<p>主要的原因是采用了 <a href="https://github.com" target="_blank" rel="external">https://github.com</a> 类型的repository，如下：</p>
+<pre><code>deploy:
+  type: git
+  repository: https://github.com/LastMagician/LastMagician.github.io.git
+  branch: master
+</code></pre><p>解决方案，改成ssh类型的repository，如下</p>
+<pre><code>deploy:
+  type: git
+  repository: git@github.com:LastMagician/LastMagician.github.io.git
+  branch: master
+</code></pre><p>关于获取ssh：<br><img src="/uploads/2016-03-21.png" alt="ssh"></p>
+<p><em>注意 repository 的值的变化</em></p>
+<h2 id="4、生成推送到github时报错：ERROR-Deployer-not-found-git"><a href="#4、生成推送到github时报错：ERROR-Deployer-not-found-git" class="headerlink" title="4、生成推送到github时报错：ERROR Deployer not found: git"></a>4、生成推送到github时报错：ERROR Deployer not found: git</h2><p>解决方法： 安装 hexo-deployer-git，命令如下</p>
+<blockquote>
+<p>npm install hexo-deployer-git –save</p>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a href="/2016/04/02/002/" class="prev">PREV</a></div><div class="copyright"><p>© 2017 <a href="http://yoursite.com">LastMagician</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-75748515-1",'auto');ga('send','pageview');</script></body></html>
